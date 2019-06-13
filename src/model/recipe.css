@@ -1,0 +1,15 @@
+.CardBody{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.Card{
+    width: 23%;
+    box-shadow: 10px 5px 5px grey;
+    margin: 1%;
+}
+#but{
+    position: inherit;
+    bottom: 0;
+    left: 0;
+}

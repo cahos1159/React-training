@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button } from 'reactstrap';
-import {MOCK} from './Mock';
+import{Header} from './CustomComponent/header';
+import { MOCK } from './Mock';
+import { Recipe } from './model/Recipe'
 
 
 class App extends Component {
+  state = {
+    recipes: MOCK,
+  };
+
+  new = (reci)=>()=>{
+    reci.id = this.state.recipes.length+1;
+    console.log(reci);
+     this.setState({
+      recipes : this.state.recipes.concat(reci)
+     })
+  };
+  delete = (id)=>()=>{
+    this.setState({
+      recipes : this.state.recipes.filter(item => item.id !== id)
+    })
+  };
   render() {
     return (
-     <Card>
-       <CardImg top width="100%" src={MOCK[0].picture} alt="Card image cap"></CardImg>
-         <CardBody>
-            <CardTitle>{MOCK[0].name}</CardTitle>
-            <CardText>{MOCK[0].description}</CardText>
-         </CardBody>
-       
-     </Card>
+      <body>
+        <Header new={this.new}/>
+        <div>{this.state.recipes.map(recipe => <Recipe recipe={recipe} delete={this.delete}  />)}</div>
+      </body>
+
     );
   }
 }
